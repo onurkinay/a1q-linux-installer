@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #
-# A1Q INSTALLER 
+# LINUX A1Q OS INSTALLER 
 # WRITTEN BY ONUR KINAY
 #
 

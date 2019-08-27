@@ -240,18 +240,19 @@ clear
 dialog --backtitle "A1Q OS INSTALLER" --infobox "The OS is installing on your selected disk. Please wait..." 3 65
 
 RESULT_TAR=$(tar -xvpzf /root/the-os.tar.gz -C /mnt/theos --numeric-owner)
+RESULT_NEWUSERFILE=$(tar -xC /mnt/theos/home -f /mnt/theos/newuser.tar)
 clear
 dialog --backtitle "A1Q OS INSTALLER" --infobox "The OS has been installed on your computer. Now, the boot loader is installing..." 3 85
 
 for f in dev dev/pts proc ; do mount --bind /$f /mnt/theos/$f ; done
 chroot /mnt/theos /bin/bash -c "grub-install $DISK && grub-mkconfig -o /boot/grub/grub.cfg && 
 	useradd -d /home/$NAMEOFUSER $NAMEOFUSER &&
-	mkdir /home/$NAMEOFUSER &&
+	mv /home/test-user /home/$NAMEOFUSER &&
 	echo 'root:$PASSOFROOT' | chpasswd &&
 	echo '$NAMEOFUSER:$PASSOFUSER' | chpasswd &&
         echo $HOSTNAMEOFSYSTEM > /etc/hostname &&
 	sed -i 's/a1q/$HOSTNAMEOFSYSTEM/g' /etc/hosts && 
-	history -c"
+	chown $NAMEOFUSER /home/$NAMEOFUSER/*   && history -c "
 
 umount /mnt/theos
 

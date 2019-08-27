@@ -241,6 +241,7 @@ dialog --backtitle "A1Q OS INSTALLER" --infobox "The OS is installing on your se
 
 RESULT_TAR=$(tar -xvpzf /root/the-os.tar.gz -C /mnt/theos --numeric-owner)
 RESULT_NEWUSERFILE=$(tar -xC /mnt/theos/home -f /mnt/theos/newuser.tar)
+rm /mnt/theos/newuser.tar
 clear
 dialog --backtitle "A1Q OS INSTALLER" --infobox "The OS has been installed on your computer. Now, the boot loader is installing..." 3 85
 

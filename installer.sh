@@ -253,7 +253,7 @@ chroot /mnt/theos /bin/bash -c "grub-install $DISK && grub-mkconfig -o /boot/gru
 	echo '$NAMEOFUSER:$PASSOFUSER' | chpasswd &&
         echo $HOSTNAMEOFSYSTEM > /etc/hostname &&
 	sed -i 's/a1q/$HOSTNAMEOFSYSTEM/g' /etc/hosts && 
-	chown $NAMEOFUSER /home/$NAMEOFUSER/*   && history -c "
+	chown -R $NAMEOFUSER /home/$NAMEOFUSER/   && history -c "
 
 umount /mnt/theos
 
